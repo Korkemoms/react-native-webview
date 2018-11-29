@@ -127,9 +127,9 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
         RNCWebView reactWebView = (RNCWebView) webView;
         reactWebView.callInjectedJavaScript();
 
-        if (messagingEnabled && overwriteWindowPostMessage) {
-          reactWebView.overwritePostMessage();
-        }
+        //if (messagingEnabled && overwriteWindowPostMessage) {
+        //  reactWebView.overwritePostMessage();
+        //}
 
         emitFinishEvent(webView, url);
       }
