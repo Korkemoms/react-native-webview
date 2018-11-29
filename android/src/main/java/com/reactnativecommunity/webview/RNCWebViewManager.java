@@ -326,9 +326,9 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
       messagingEnabled = enabled;
 
       if (enabled) {
-        addJavascriptInterface(createRNCWebViewBridge(this), WEBVIEW_MESSAGE_HANDLER + HANDLER_NAME);
+        addJavascriptInterface(createRNCWebViewBridge(this), "_WTAPP_BRIDGE");
       } else {
-        removeJavascriptInterface(WEBVIEW_MESSAGE_HANDLER + HANDLER_NAME);
+        removeJavascriptInterface("_WTAPP_BRIDGE");
       }
     }
 
@@ -378,7 +378,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
         "window.originalPostMessage = window.postMessage;" +
         "window.postMessage = function(data, origin) {" +
           "window.originalPostMessage(data, origin);" +
-          WEBVIEW_MESSAGE_HANDLER + HANDLER_NAME + ".postMessage(String(data));" +
+          "_WTAPP_BRIDGE.postMessage(String(data));" +
         "}" +
       ")");
     }
