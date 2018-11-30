@@ -7,6 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Pattern;
 import javax.annotation.Nullable;
+import android.webkit.JsPromptResult;
+import android.webkit.JsResult;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -81,6 +83,8 @@ import org.json.JSONObject;
  */
 @ReactModule(name = RNCWebViewManager.REACT_CLASS)
 public class RNCWebViewManager extends SimpleViewManager<WebView> {
+
+  private RNCWebViewPackage aPackage;
 
   protected static final String REACT_CLASS = "RNCWebView";
 
@@ -805,11 +809,11 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     eventDispatcher.dispatchEvent(event);
   }
 
-  public void setPackage(AndroidWebViewPackage aPackage) {
+  public void setPackage(RNCWebViewPackage aPackage) {
     this.aPackage = aPackage;
   }
 
-  public AndroidWebViewPackage getPackage() {
+  public RNCWebViewPackage getPackage() {
     return this.aPackage;
   }
 }
