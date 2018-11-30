@@ -13,6 +13,9 @@ import android.widget.Toast;
 import android.webkit.DownloadListener;
 import android.app.DownloadManager;
 import android.util.Log;
+import android.os.Environment;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -440,7 +443,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
       }
     });
 
-    view.setDownloadListener(new DownloadListener() {
+    webView.setDownloadListener(new DownloadListener() {
       public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype,
           long contentLength) {
 
