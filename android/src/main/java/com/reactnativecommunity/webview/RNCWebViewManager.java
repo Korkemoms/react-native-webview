@@ -16,6 +16,8 @@ import android.util.Log;
 import android.os.Environment;
 import java.net.MalformedURLException;
 import java.net.URL;
+import android.webkit.URLUtil;
+import java.net.URLDecoder;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -413,6 +415,32 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     final RNCWebViewModule module = this.aPackage.getModule();
     webView.setWebChromeClient(new WebChromeClient() {
 
+      @Override
+      public void onProgressChanged(WebView webView, int newProgress) {
+        super.onProgressChanged(webView, newProgress);
+        WritableMap event = Arguments.createMap();
+        event.putDouble("target", webView.getId());
+        event.putString("title", webView.getTitle());
+        event.putBoolean("canGoBack", webView.canGoBack());
+        event.putBoolean("canGoForward", webView.canGoForward());
+        event.putDouble("progress", (float) newProgress / 100);
+        dispatchEvent(webView, new TopLoadingProgressEvent(webView.getId(), event));
+      }
+
+      @Override
+      public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
+        callback.invoke(origin, true, false);
+      }
+
+      @Override
+      public boolean onConsoleMessage(ConsoleMessage message) {
+        if (ReactBuildConfig.DEBUG) {
+          return super.onConsoleMessage(message);
+        }
+        // Ignore console logs in non debug builds.
+        return true;
+      }
+
       public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
         module.setUploadMessage(uploadMsg);
         module.openFileChooserView();
@@ -494,30 +522,6 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
         }
       }
 
-      @Override
-      public boolean onConsoleMessage(ConsoleMessage message) {
-        if (ReactBuildConfig.DEBUG) {
-          return super.onConsoleMessage(message);
-        }
-        return true;
-      }
-
-      @Override
-      public void onProgressChanged(WebView webView, int newProgress) {
-        super.onProgressChanged(webView, newProgress);
-        WritableMap event = Arguments.createMap();
-        event.putDouble("target", webView.getId());
-        event.putString("title", webView.getTitle());
-        event.putBoolean("canGoBack", webView.canGoBack());
-        event.putBoolean("canGoForward", webView.canGoForward());
-        event.putDouble("progress", (float) newProgress / 100);
-        dispatchEvent(webView, new TopLoadingProgressEvent(webView.getId(), event));
-      }
-
-      @Override
-      public void onGeolocationPermissionsShowPrompt(String origin, GeolocationPermissions.Callback callback) {
-        callback.invoke(origin, true, false);
-      }
     });
     reactContext.addLifecycleEventListener(webView);
     mWebViewConfig.configWebView(webView);
