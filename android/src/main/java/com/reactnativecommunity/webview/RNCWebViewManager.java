@@ -804,4 +804,12 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     EventDispatcher eventDispatcher = reactContext.getNativeModule(UIManagerModule.class).getEventDispatcher();
     eventDispatcher.dispatchEvent(event);
   }
+
+  public void setPackage(AndroidWebViewPackage aPackage) {
+    this.aPackage = aPackage;
+  }
+
+  public AndroidWebViewPackage getPackage() {
+    return this.aPackage;
+  }
 }
