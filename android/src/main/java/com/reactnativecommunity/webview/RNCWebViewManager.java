@@ -11,6 +11,8 @@ import android.webkit.JsPromptResult;
 import android.webkit.JsResult;
 import android.widget.Toast;
 import android.webkit.DownloadListener;
+import android.app.DownloadManager;
+import android.util.Log;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -405,7 +407,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
     WebView.setWebContentsDebuggingEnabled(true);
 
     RNCWebView webView = createRNCWebViewInstance(reactContext);
-    final AndroidWebViewModule module = this.aPackage.getModule();
+    final RNCWebViewModule module = this.aPackage.getModule();
     webView.setWebChromeClient(new WebChromeClient() {
 
       public void openFileChooser(ValueCallback<Uri> uploadMsg, String acceptType) {
