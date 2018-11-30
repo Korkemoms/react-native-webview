@@ -484,8 +484,10 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
       @Override
       public boolean onConsoleMessage(ConsoleMessage message) {
-        return super.onConsoleMessage(message);
-
+        if (ReactBuildConfig.DEBUG) {
+          return super.onConsoleMessage(message);
+        }
+        return true;
       }
 
       @Override

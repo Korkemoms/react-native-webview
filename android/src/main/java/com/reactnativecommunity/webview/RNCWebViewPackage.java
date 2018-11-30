@@ -38,11 +38,11 @@ public class RNCWebViewPackage implements ReactPackage {
     return Arrays.<ViewManager>asList(manager);
   }
 
-  public AndroidWebViewManager getManager() {
+  public RNCWebViewManager getManager() {
     return manager;
   }
 
-  public AndroidWebViewModule getModule() {
+  public RNCWebViewModule getModule() {
     return module;
   }
 }

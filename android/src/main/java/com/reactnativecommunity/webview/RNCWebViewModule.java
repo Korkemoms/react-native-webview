@@ -43,13 +43,13 @@ public class RNCWebViewModule extends ReactContextBaseJavaModule implements Acti
     context.addActivityEventListener(this);
   }
 
-  private AndroidWebViewPackage aPackage;
+  private RNCWebViewPackage aPackage;
 
-  public void setPackage(AndroidWebViewPackage aPackage) {
+  public void setPackage(RNCWebViewPackage aPackage) {
     this.aPackage = aPackage;
   }
 
-  public AndroidWebViewPackage getPackage() {
+  public RNCWebViewPackage getPackage() {
     return this.aPackage;
   }
 
