@@ -450,7 +450,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
       }
 
       public boolean onJsConfirm(WebView view, String url, String message, JsResult result) {
-        new AlertDialog.Builder(myApp).setTitle("Webtemp").setMessage(message)
+        new AlertDialog.Builder(reactContext).setTitle("Webtemp").setMessage(message)
             .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
               public void onClick(DialogInterface dialog, int which) {
                 result.confirm();
