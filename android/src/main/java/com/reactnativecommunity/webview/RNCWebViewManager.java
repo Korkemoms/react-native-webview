@@ -18,6 +18,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import android.webkit.URLUtil;
 import java.net.URLDecoder;
+import android.content.DialogInterface;
+import android.app.AlertDialog;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
