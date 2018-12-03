@@ -409,7 +409,7 @@ public class RNCWebViewManager extends SimpleViewManager<WebView> {
 
   @Override
   @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-  protected WebView createViewInstance(ThemedReactContext reactContext) {
+  protected WebView createViewInstance(final ThemedReactContext reactContext) {
 
     WebView.setWebContentsDebuggingEnabled(true);
 
