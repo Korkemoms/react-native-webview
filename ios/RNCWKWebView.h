@@ -43,5 +43,9 @@ shouldStartLoadForRequest:(NSMutableDictionary<NSString *, id> *)request
 - (void)goBack;
 - (void)reload;
 - (void)stopLoading;
+- (void)runJavaScriptAlertPanelWithMessage;
+- (void)runJavaScriptConfirmPanelWithMessage;
+- (void)runJavaScriptTextInputPanelWithPrompt;
 
 @end
+
