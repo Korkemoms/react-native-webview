@@ -8,6 +8,7 @@
 #import "RNCWKWebView.h"
 #import <React/RCTConvert.h>
 #import <React/RCTAutoInsetsProtocol.h>
+#import <RNCWKWebViewManager.h>
 
 #import "objc/runtime.h"
 
@@ -40,15 +41,15 @@ static NSString *const MessageHandlerName = @"ReactNative";
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
-    [WKWebViewPanelManager presentAlertOnController:self.view.window.rootViewController title:@"Alert" message:message handler:completionHandler];
+    [RNCWKWebViewManager presentAlertOnController:self.view.window.rootViewController title:@"Alert" message:message handler:completionHandler];
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler {
-    [WKWebViewPanelManager presentConfirmOnController:self.view.window.rootViewController title:@"Confirm" message:message handler:completionHandler];
+    [RNCWKWebViewManager presentConfirmOnController:self.view.window.rootViewController title:@"Confirm" message:message handler:completionHandler];
 }
 
 - (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * __nullable result))completionHandler {
-    [WKWebViewPanelManager presentPromptOnController:self.view.window.rootViewController title:@"Prompt" message:prompt defaultText:defaultText handler:completionHandler];
+    [RNCWKWebViewManager presentPromptOnController:self.view.window.rootViewController title:@"Prompt" message:prompt defaultText:defaultText handler:completionHandler];
 }
 
 - (void)dealloc
