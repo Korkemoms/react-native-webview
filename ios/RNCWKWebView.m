@@ -39,6 +39,18 @@ static NSString *const MessageHandlerName = @"ReactNative";
   BOOL _savedHideKeyboardAccessoryView;
 }
 
+- (void)webView:(WKWebView *)webView runJavaScriptAlertPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(void))completionHandler {
+    [WKWebViewPanelManager presentAlertOnController:self.view.window.rootViewController title:@"Alert" message:message handler:completionHandler];
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptConfirmPanelWithMessage:(NSString *)message initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(BOOL result))completionHandler {
+    [WKWebViewPanelManager presentConfirmOnController:self.view.window.rootViewController title:@"Confirm" message:message handler:completionHandler];
+}
+
+- (void)webView:(WKWebView *)webView runJavaScriptTextInputPanelWithPrompt:(NSString *)prompt defaultText:(nullable NSString *)defaultText initiatedByFrame:(WKFrameInfo *)frame completionHandler:(void (^)(NSString * __nullable result))completionHandler {
+    [WKWebViewPanelManager presentPromptOnController:self.view.window.rootViewController title:@"Prompt" message:prompt defaultText:defaultText handler:completionHandler];
+}
+
 - (void)dealloc
 {
     if(_webView){
